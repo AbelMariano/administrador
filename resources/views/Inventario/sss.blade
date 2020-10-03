@@ -1,0 +1,84 @@
+@extends('adminlte::page')
+
+@section('title', 'Registro inventario')
+
+@section('plugins.Barcode', true)
+@section('plugins.ValidarCampos', true)
+
+
+
+@section('content_header')
+    <h1>Detalles de inventario</h1> 
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
+  Agregar
+</button>
+@include('Inventario.ModalRegistrar')
+@stop
+
+@section('content')
+
+@if(Session::has('message'))
+<div class="alert alert-primary" role="alert">
+{{Session::get('message')}}
+</div>
+
+@endif
+
+
+
+
+ <table id="example" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr><th>Cod Ref</th>
+                <th>Producto</th>
+                <th>Canridad</th>
+                <th>Peso</th>
+                <th>Precio</th>
+                <th>Editar</th>
+                <th>Actualizar</th>
+            </tr>
+        </thead>
+        <tbody>
+			@foreach($imprimir as $Articulos)  
+            <tr>
+            	<td>{{$Articulos->id}}</td>
+                <td>{{$Articulos->producto}}</td>
+                <td>{{$Articulos->cantidad}} Unidades</td>
+                <td>{{$Articulos->peso}} {{$Articulos->unidad}}</td>
+                <td>{{$Articulos->precio}}$</td>
+                <td>
+                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#EditarUsuario{{$Articulos->id}}">Editar <i class = "fas fa-sync {{-- fa-spin --}}" ></i></button>@include('Inventario.ModalEditar')
+                </td>
+                <td>
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#EliminarUsuario{{$Articulos->id}}">Eliminar
+                 <i class = "fas fa-recycle {{-- fa-spin --}}" ></i> </button>@include('Inventario.ModalEliminar')
+                </td>
+            </tr>
+           @endforeach
+        </tfoot>
+    </table>
+</div> {{-- container --}}
+@stop
+
+
+
+  
+
+
+
+
+
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop
+
+@section('js')
+    <script> console.log('Hi!'); </script>
+    <script type="text/javascript">$(document).ready(function() {
+    $('#example').DataTable();
+} );</script>
+
+
+
+@stop
