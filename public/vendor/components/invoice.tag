@@ -1,17 +1,71 @@
 <invoice>
-    <div class="well well-sm">
-        <div class="row">
-            <div class="col-xs-6">
-                <input id="client" class="form-control typeahead" type="text" placeholder="Cliente" />
-            </div>
-            <div class="col-xs-2">
-                <input class="form-control" type="text" placeholder="Ruc" readonly value="{ruc}" />
-            </div>
-            <div class="col-xs-4">
-                <input class="form-control" type="text" placeholder="Dirección" readonly value="{address}" />
-            </div>
-        </div>
-    </div>
+
+ 
+ 
+ <div class="container">
+ <div class="card" style="width: 100%;">
+ <div class="card-body ">
+ <center><h3><i class="fas fa-fw fa-handshake "></i> Datos Personales Del Cliente. <br><br></h3></center>
+ <div class="row">
+ <div class="col-sm-3" style="margin-top: 20px" >  
+ <input class="form-control" id="client" type="text" onkeypress="return soloNueros(event)" required placeholder="Numero de documento" style="border:none;border-bottom: 1px solid #000;border-radius: 0px;">   
+  </div>
+<div class="col-sm-9" style="margin-top: 20px" >  
+    <input class="form-control" value="Nombres: {name} {nametwo} Apellidos: {apellido} {apellidotwo} Dirección: {address}" style="border:none;border-bottom: 1px solid #000;border-radius: 0px;width: 100%; background-color: #fff" readonly="">   
+  </div>
+
+
+  
+
+  
+
+ <!--  <div class="col-xs-4">  
+  <h5>Numero Documento: {docuento} {ruc}.</h5>
+  </div>
+
+   <div class="col-xs-4">  
+  <h5>.</h5>
+  </div>
+  -->
+
+  
+
+  
+
+  <!-- <div class="col-xs-4" style="margin-left:2%">
+ <h5>Nombre {name}, Apellido {apellido}, Nuero de  Documento {docuento} {ruc}.</h5>
+  </div>
+ -->
+   <!-- <div class="col-sm-6">
+  <h3>{name} {apellido} {docuento} {ruc}</h3>
+  </div> -->
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <div class="row">
         <div class="col-xs-7">
@@ -150,12 +204,17 @@
                 url: function(q) {
                     return baseUrl('invoice/findClient?q=' + q);
                 },
-                getValue: 'name',
+                getValue: 'ruc',
                 list: {
                     onClickEvent: function() {
                         var e = client.getSelectedItemData();
                         self.client_id = e.id;
+                        self.name = e.name;
+                        self.nametwo = e.nametwo;
                         self.ruc = e.ruc;
+                        self.apellido = e.apellido;
+                        self.apellidotwo = e.apellidotwo;
+                        self.docuento = e.docuento;
                         self.address = e.address;
 
                         self.update();

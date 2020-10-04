@@ -12,9 +12,7 @@
 </button>
 </div>
 
-<style type="text/css">
-  
-</style>
+
  <form action="{{route('Product.store')}}" method="POST"  class="needs-validation" >
   @csrf
  <div class="col-xs-12">

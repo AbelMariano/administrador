@@ -12,7 +12,7 @@ class ProductRepository {
     }
 
     public function findByName($q) {
-        return $this->model->where('name', 'like', "%$q%")
+        return $this->model->where('id', 'like', "%$q%")
                            ->get();
     }
 }

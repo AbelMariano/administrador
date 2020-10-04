@@ -4,10 +4,12 @@
 @section('plugins.ValidarCampos', true)
 @section('content_header')
 <meta name="csrf-token" content="<?php echo csrf_token() ?>"/>
-<h1>Nueva factura</h1> 
+<h1> <i class="fas fa-file-invoice"></i> Nueva factura</h1> 
 
-oyohohhoi
-
+<br>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
+  Agregar Cliente
+</button>
  
 @stop
 

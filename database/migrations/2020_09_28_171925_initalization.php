@@ -10,8 +10,14 @@ class Initalization extends Migration
         Schema::create('clients', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('nametwo');
+            $table->string('apellido');
+            $table->string('apellidotwo');
+            $table->string('docuento');
             $table->string('ruc');
             $table->string('address');
+            $table->string('telefono');
+            $table->string('correo');
             $table->timestamps();
         });
  
@@ -55,15 +61,25 @@ class Initalization extends Migration
             $table->foreign('product_id')->references('id')->on('products');
         });
 
+        
+
         // Default data
         DB::table('clients')->insert([
-            ['name' => 'Eduardo Rodriguez', 'ruc' => '12345678912', 'address' => 'Av. Los informáticos 107'],
-            ['name' => 'Juan Perez', 'ruc' => '12345678912', 'address' => 'Av. Los informáticos 108'],
+            ['name' => 'Abel',
+            'nametwo' => 'Mariano',
+            'apellido' => 'Flores',
+            'apellidotwo' => 'silva',
+            'docuento' => 'DNI',
+            'ruc' => '23951264',
+            'address' => 'Av. Los informáticos 107',
+            'telefono' => '04248331041',
+            'correo' => 'abelmarianoo@gmail.com']
+           
         ]);
 
         DB::table('products')->insert([
             ['name' => 'Helado de coco','cantidad'=> '12' ,'peso'=> '12' ,'unidad'=> 'kg'
-             ,'price' => 1000.50,'iva' =>0.18],
+             ,'price' => 1000.50,'iva' =>0.20],
            ['name' => 'Helado de fresa','cantidad'=> '20' ,'peso'=> '19' ,'unidad'=> 'kg'
              ,'price' => 1000,'iva' =>0],
            

@@ -12,7 +12,7 @@ class ClientRepository {
     }
 
     public function findByName($q) {
-        return $this->model->where('name', 'like', "%$q%")
+        return $this->model->where('ruc', 'like', "%$q%")
                            ->get();
     }
 }

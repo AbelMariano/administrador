@@ -523,11 +523,11 @@ return [
                     'location' => 'vendor/bower_components/EasyAutocomplete/dist/jquery.easy-autocomplete.min.js',
                 ],
                 
-                [
-                    'type' => 'css',
-                    'asset' => true,
-                    'location' => 'vendor/bower_components/EasyAutocomplete/dist/easy-autocomplete.min.css',
-                ],
+                // [
+                //     'type' => 'css',
+                //     'asset' => true,
+                //     'location' => 'vendor/bower_components/EasyAutocomplete/dist/easy-autocomplete.min.css',
+                // ],
             
 
 
