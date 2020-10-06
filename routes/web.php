@@ -30,3 +30,9 @@ Route::get('/invoice/pdf/{id}', 'InvoiceController@pdf')->name('invoice.pdf');
 Route::get('/invoice/findClient', 'InvoiceController@findClient')->name('invoice.findClient');
 Route::get('/invoice/findProduct', 'InvoiceController@findProduct')->name('invoice.findProduct');
 Route::post('/invoice/save', 'InvoiceController@save')->name('invoice.save');
+
+
+Route::get("/vender", "VenderController@index")->name("vender.index");
+        Route::post("/productoDeVenta", "VenderController@agregarProductoVenta")->name("agregarProductoVenta");
+        Route::delete("/productoDeVenta", "VenderController@quitarProductoDeVenta")->name("quitarProductoDeVenta");
+        Route::post("/terminarOCancelarVenta", "VenderController@terminarOCancelarVenta")->name("terminarOCancelarVenta");

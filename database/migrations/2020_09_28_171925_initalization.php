@@ -22,13 +22,29 @@ class Initalization extends Migration
         });
  
         Schema::create('products', function (Blueprint $table) {
-            $table->increments('id', 4, '0', STR_PAD_LEFT);
-            $table->string('name');
-            $table->string('cantidad');
-            $table->string('peso');
-            $table->string('unidad');
-            $table->decimal('price', 10, 2);
-            $table->decimal('iva', 10, 2);
+            $table->id();
+            $table->string("codigo_barras");
+            $table->string("descripcion");
+            $table->decimal("precio_compra", 9, 2);
+            $table->decimal("precio_venta", 9, 2);
+            $table->decimal("existencia", 9, 2);
+            $table->timestamps();
+        });
+
+
+       Schema::create('ventas', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+            });
+
+        Schema::create('productos_vendidos', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger("id_venta");
+            $table->foreign("id_venta")->references("id")->on("ventas")->onDelete("cascade")->onUpdate("cascade");
+            $table->string("descripcion");
+            $table->string("codigo_barras");
+            $table->decimal("precio", 9, 2);
+            $table->decimal("cantidad", 9, 2);
             $table->timestamps();
         });
 
@@ -47,19 +63,21 @@ class Initalization extends Migration
             $table->timestamps();
         });
 
+       
         // Foreign keys
-        Schema::table('invoices', function ($table) {
-            $table->integer('client_id')->unsigned();
-            $table->foreign('client_id')->references('id')->on('clients');
+        
+        Schema::table('ventas', function ($table) {
+            $table->integer('id_cliente')->unsigned();
+            $table->foreign('id_cliente')->references('id')->on('clients');
         });
 
-        Schema::table('invoice_items', function ($table) {
-            $table->integer('invoice_id')->unsigned();
-            $table->integer('product_id')->unsigned();
+        // Schema::table('invoice_items', function ($table) {
+        //     $table->integer('invoice_id')->unsigned();
+        //     $table->integer('product_id')->unsigned();
 
-            $table->foreign('invoice_id')->references('id')->on('invoices');
-            $table->foreign('product_id')->references('id')->on('products');
-        });
+        //     $table->foreign('invoice_id')->references('id')->on('invoices');
+        //     $table->foreign('product_id')->references('id')->on('products');
+        // });
 
         
 
@@ -77,12 +95,23 @@ class Initalization extends Migration
            
         ]);
 
+
+
         DB::table('products')->insert([
-            ['name' => 'Helado de coco','cantidad'=> '12' ,'peso'=> '12' ,'unidad'=> 'kg'
-             ,'price' => 1000.50,'iva' =>0.20],
-           ['name' => 'Helado de fresa','cantidad'=> '20' ,'peso'=> '19' ,'unidad'=> 'kg'
-             ,'price' => 1000,'iva' =>0],
-           
+            [
+            'codigo_barras'=> '12',
+            'descripcion' => 'Helado de coco',
+            'precio_compra' => 1000.50,
+            'precio_venta' =>3000.20,
+             'existencia'=> '12',
+             ],
+           [
+            'codigo_barras'=> '15',
+            'descripcion' => 'Helado de fresa',
+            'precio_compra' => 2000.50,
+            'precio_venta' =>2000.00,
+             'existencia'=> '122',
+           ]
         ]);
     }
 

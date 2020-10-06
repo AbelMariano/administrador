@@ -40,15 +40,15 @@
 			@foreach($imprimir as $Product)  
             <tr>
             	<td>
-                <center> {!! DNS1D::getBarcodeSVG( str_pad ($Product->id, 4, '0', STR_PAD_LEFT), 'C39',1.3,55)!!}
+                <center> {!! DNS1D::getBarcodeSVG( str_pad ($Product->codigo_barras, 4, '0', STR_PAD_LEFT), 'C39',1.3,55)!!}
                 </center>
                 </td>
 
                 <td>
-                {{$Product->name}}, 
-                Cantidad Disponible {{$Product->cantidad}},
+                {{$Product->descripcion}}, 
+                Cantidad Disponible {{$Product->existencia}},
                 Peso {{$Product->peso}}  {{$Product->unidad}}, 
-                Costo {{$Product->price}}$</td>
+                Costo {{$Product->precio_venta}}$</td>
                 
                 <td>
                <center> <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#EditarUsuario{{$Product->id}}"> <i class = "fas fa-edit" ></i></button></center>@include('Inventario.ModalEditar')
@@ -77,7 +77,7 @@
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+    
     <script type="text/javascript">$(document).ready(function() {
     $('#example').DataTable();
 } );</script>
